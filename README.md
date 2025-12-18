@@ -27,7 +27,7 @@ Application mobile de gestion de Pokédex avec authentification, capture de Pok�
 ### 2. Configuration
 
 * **1er terminal** : cd ./front/ ; npm install ; npx expo start --clear
-* ** 2nd terminal** : cd ./backend/ ; npm install ; npm run dev
+* **2nd terminal** : cd ./backend/ ; npm install ; npm run dev
 
 ### 3. Fonctionnalités
 
