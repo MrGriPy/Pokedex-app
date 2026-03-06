@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const API_BASE_URL = 'http://10.67.3.191:3000';
+import Constants from 'expo-constants';
+const debuggerHost = Constants.expoConfig?.hostUri || Constants.manifest?.debuggerHost;
+const ipAddress = debuggerHost ? debuggerHost.split(':')[0] : 'localhost';
+const API_BASE_URL = `http://${ipAddress}:3000`;
 
 export const api = {
   signup: async (data: any) => {
@@ -84,7 +87,6 @@ export const api = {
     });
     return response.json();
   },
-
   deleteUser: async (id: string) => {
     const token = await AsyncStorage.getItem('token');
     if (!token) return { ok: false, message: 'No token' };
@@ -111,6 +113,14 @@ export const api = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
+    });
+    return response.json();
+  },
+  resetPasswordV2: async (data: any) => {
+    const response = await fetch(`${API_BASE_URL}/user/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
     return response.json();
   },
